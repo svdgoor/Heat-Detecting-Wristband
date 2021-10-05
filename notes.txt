@@ -1,0 +1,62 @@
+IR tutorial
+https://learn.adafruit.com/using-melexis-mlx90614-non-contact-sensors/
+
+Board tour, mainly which stuff is on which pin: 
+https://learn.adafruit.com/introducing-circuit-playground/guided-tour
+pt 2 https://learn.adafruit.com/introducing-circuit-playground/pinouts
+
+ # Laser can be used with red powered and blue grounded. Can be used with the IR sensor on the same 3.3V but less powerful then when on VBATT. Still usable tho.
+ #    We need to watch out for shorting the connectors close to the laser; it will drain the battery
+ # IR sensor can give ~10 readings per second before it starts giving the same ones
+ #    Accuracy is very good
+ #    See TemperatureTest
+ # USB-C Charger can be connected to + & - on battery port. Battery then connected directly to B+/- on the charger.
+ #    Charger itself: LED above R2 indicates charging, LED above R1 indicates when the battery is charged.
+ #    Requires no pins other than those in the battery port
+ #    Also has protective circuit for LiPo battery. Double the protection I guess.
+ # Accelerometer has 3D detection
+ #    X is forward/backward, Y is left/right, Z is up/down
+ #    It is not very accurate and fluctuates by around .1 M/s^2 
+ #    Z is around 9.8 m/s^2 when not moving, because of gravity, x and y are less than 1.5 m/s^2 when not moving & flat
+ #    If we make sure it is totally flat when put down, we can use it to detect movement quite well.
+ #    See AccelerometerTest
+ # We should make use of the on-board temperature sensor to prevent overheating
+ # The tones from the buzzer are not very loud, but they are still audible. May not be suitable for elderly people.
+ #    The buzzer is directly hooked into the blinker LED. When the buzzer is on, the LED is on.
+ #    See Hello_Speaker 
+ # Tapping is usable, but may too sensitive / inaccurate.
+ #    See accelTap
+ 
+
+Note: All I/O pins are Analog Input
+Pins: Comp: Func:
+  D0  LZR   (I/O + Serial Receive)
+  D1        (I/O + Serial Transmit)
+  D2  IR    (I/O + I2C SDA)
+  D3  IR    (I/O + I2C SCL)
+* D4  **    (Button Left)
+* D5  **    (Speaker Out)
+  D6        (I/O)
+* D7  **    (Accelerometer)
+  D8  -
+  D9        (I/O)
+  D10       (I/O)
+  D11 -
+  D12       (I/O)
+  D13 **    (Red dimmable LED)
+  D14 -
+  D15 -
+  D16 -
+* D17 **    (Used by LEDs. Access through custom library, see LightTest.)
+  D18 -
+* D19 **    (Button Right)
+  D20 -
+* D21 **    (Slide Switch)
+
+* = internal usage by us & the board
+
+List of used:
+ D2, D3, D4, D5, D7, D13, D17, D19, D21
+
+List of free:
+ D1, D6, D9, D10, D12

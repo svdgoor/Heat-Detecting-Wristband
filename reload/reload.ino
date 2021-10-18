@@ -5,7 +5,7 @@
 
 class IR {
   private:
-    Adafruit_MLX90614 sensor = Adafruit_MLX90614();
+    const Adafruit_MLX90614 sensor = Adafruit_MLX90614();
     uint8_t _pin = NULL;
   public:
     void setup() {
@@ -123,18 +123,23 @@ class Accelerometer {
 class Laser {
   public:
     Laser(uint8_t pin, int max_ms) {
+      pinMode(pin, OUTPUT);
+      digitalWrite(pin, HIGH);
+      delay(3000);
       _pin = pin;
       _max_ms = max_ms;
-      pinMode(_pin, OUTPUT);
+      pinMode(pin, OUTPUT);
       off();
     }
     void enable() {
+      Serial.println("Enabling laser for " + String(_max_ms) + " ms");
       _start = millis();
       on();
     }
     void update() {
       if (_start == -1) return;
-      if (millis() - _start - _max_ms > 0) {
+      if (millis() - _start > _max_ms) {
+        Serial.println("Shutdown laser because timeout");
         off();
         _start = -1;
       }
@@ -193,44 +198,14 @@ class Tapping {
     int _dtapt = -1;
 };
 
-Sounds so = NULL;
-Switch sw = NULL;
-Lights li = NULL;
-Laser la = NULL;
-Tapping ta = NULL;
-Accelerometer acc = NULL;
-IR ir = NULL;
-
-void _on_tap() {
-  ta.tap();
-}
-
-// Main
 void setup() {
   setup_serial();
   CircuitPlayground.begin();
-  so = Sounds(CircuitPlayground);
-  sw = Switch(CircuitPlayground);
-  li = Lights();
-  la = Laser(A1, 5000); 
-  ta = Tapping(500, 3000, 120, CircuitPlayground);
-  acc = Accelerometer(CircuitPlayground);
-  attachInterrupt(digitalPinToInterrupt(CPLAY_LIS3DH_INTERRUPT), _on_tap, FALLING);
-  // ir = IR(A0);
-  li.brightness(128);
 }
 
 void loop() {
-  for (int i = 0; i < 10; i++) {
-    print(String(ir.get_object_temp()));
-    li.set(i, random(0, 128), random(0, 128), random(0, 128));
-    li.load();
-    sleep(100);
-    so.play(NOTE_C4, 200);
-  }
-  sw.update();
-  la.update();
-  acc.get_x();
+  Serial.println(String(ir.get_object_temp()));
+  Serial.print(".");
 }
 
 void setup_serial() {
@@ -238,6 +213,7 @@ void setup_serial() {
   Serial.begin(9600);
   print("Setup Serial");
 }
+
 void print(String s){
   Serial.println(s);
 }

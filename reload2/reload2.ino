@@ -255,7 +255,7 @@ void loop() {
   light_load();
   Serial.print(".");
   switch_update();
-  laser_enable();
+//  laser_enable();
 //  laser_update();
 }
 

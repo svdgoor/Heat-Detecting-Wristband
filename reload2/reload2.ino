@@ -8,7 +8,7 @@
 #define SYM_DRINK 53
 #define SYM_HOT 65
 #define SYM_DANGR 80
-#define BLINK_TEMP 25
+#define BLINK_TEMP 50
 #define BUZZER_TEMP 50
 #define DEFAULT_MODE 0
 // Mode 0 = default symbol-based warning system

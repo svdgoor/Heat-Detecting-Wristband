@@ -274,11 +274,11 @@ void next_mode() {
   light_set_all(0, 0, 0);
   to_on = true;
 }
-#define LIG_WATER 9
-#define LIG_TOUCH 8
-#define LIG_DRINK 7
-#define LIG_HOT 6
-#define LIG_DANGR 5
+#define LIG_WATER 0
+#define LIG_TOUCH 1
+#define LIG_DRINK 2
+#define LIG_HOT 3
+#define LIG_DANGR 4
 
 void do_mode(float t){
   switch(main_mode){
@@ -310,12 +310,12 @@ void do_mode(float t){
       }
       if (t > BLINK_TEMP && to_on) {
         to_on = false;
-        for (int i = 0; i < 5; i++){
+        for (int i = 5; i < 10; i++){
           light_set(i, 255, 0, 0);
         }
       } else {
         to_on = true;
-        for (int i = 0; i < 5; i++){
+        for (int i = 5; i < 10; i++){
           light_set(i, 0, 0, 0);
         }
       }
@@ -416,12 +416,13 @@ void loop() {
     delay(950);
   } else {
     float t = ir_get_object_temp();
+    float t2 = ir_get_sensor_temp();
     if (t > BUZZER_TEMP){
       CircuitPlayground.playTone(NOTE_D5, 100);
     }
-    print(String(t));
+    print(String(t) + " / " + String(t2));
     buttons_update();
-    do_mode(t);
+    do_mode(max(t, t2));
   }
 }
 

@@ -10,7 +10,7 @@ Heat-Detecting-Wristband
 7. Click `Tools`, hover over `Port` and click the port that says `Adafruit Circuit Playground` next to `COM`.
 8. Download the code in this repository by clicking [here](https://github.com/CocoTheOwner/Heat-Detecting-Wristband/archive/refs/heads/main.zip).
 9. Unzip the `.zip` file into any folder (other than your Downloads folder).
-10. Open the `reload2` folder, and open the `reload2.ino` file. (The Arduino IDE should now open).
+10. Open the `main` folder, and open the `main.ino` file. (The Arduino IDE should now open).
 11. Click `Upload` (the green, right-pointing arrow at the left top) to upload the program.
 
 # Modifying the code

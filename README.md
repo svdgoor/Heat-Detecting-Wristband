@@ -5,7 +5,7 @@ Heat-Detecting-Wristband
 2. Install and run the Arduino IDE.
 3. Click `Tools`, `Manage Libraries...`, and search for `MLX90614` and install `Adafruit MLX90614 Library` (not the `MiniMLX90614`!).
 4. Click `Tools`, hover over `Board: (...)` and click `Boards Manager` (at the top). Search for `Arduino AVR Boards` and install it.
-5. CLick `Tools`, hover over `Board: (...)` and click (in the list) `Adafruit Circuit Playground`.
+5. Click `Tools`, hover over `Board: (...)` and click (in the list) `Adafruit Circuit Playground`.
 6. Connect the system to your computer with a micro-usb connector (not the USB-C connector, that can only charge the battery).
 7. Click `Tools`, hover over `Port` and click the port that says `Adafruit Circuit Playground` next to `COM`.
 8. Download the code in this repository by clicking [here](https://github.com/CocoTheOwner/Heat-Detecting-Wristband/archive/refs/heads/main.zip).

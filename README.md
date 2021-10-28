@@ -1,5 +1,3 @@
-Heat-Detecting-Wristband
-
 # Installation onto the system
 1. Download the [Arduino IDE](https://www.arduino.cc/en/software).
 2. Install and run the Arduino IDE.
